@@ -1,10 +1,41 @@
-# 个人首页
+# 操作手册
 
-## **欢迎来到首页**
+## **第一章节,本地部署、安装**
 
-## 自我介绍
+1. 全局安装VuePress: **npm install -g vuepress**
 
-* 直接上html : <img src = 'https://p.qqan.com/up/2021-2/16137992359659254.jpg' width='200px' height= '50%'> 吃货就是我！
+2. 文件结构:
+
+```
+     > docs
+
+        >> README.md
+
+        >> .vuepress
+            >>> public 
+            >>> config.js
+
+     > package.json
+```
+
+3. 在 config.js 文件中配置网站标题、描述、主题等信息。
+
+::: warning 注意
+这是一个操作手册只需在README.md文件中书写，在本地部署后可以直接看到
+:::
+
+5. 启动命令在package.json中
+    ```
+    "scripts": 
+    {
+        "dev": "vuepress dev docs",
+        "build": "vuepress build docs"
+    }
+    ```
+
+6. 就绪，本地部署测试： **npm run dev**
+
+## **第二章节, MD书写方式、类别说明**
 
 ### 1.标题大小
 
@@ -123,6 +154,49 @@
 :tada::tada::tada::tada::tada::tada::tada:
 
 
+## **第三章节,页面设置**
+
+### 1.路由、导航
+* 路由及导航栏设置在 => config.js => module.export => **nav**中，已有相关显示例子在文件中
+
+* 外部网站地址示例：
+    ```
+    nav: 
+    [
+      { text: "常见问题", link: "https://www.baidu.com/", icon: "question" }
+    ]
+    ```
+
+* 路由导航设置完毕后在docs根目录下可创建md文件进行编写。如: 
+    ```
+    //路由导航设置
+    nav: 
+    [
+      { text: "指南", link: "/guide/", icon: "creative" }
+    [
+    ```
+    相关编写md文件位置：
+    ```
+     > docs
+
+        >> README.md    //README.md默认为主页，主页在这里编写
+        >> guide.md     //<=文件位置在这里
+        >> .vuepress
+            >>> public 
+            >>> config.js
+
+     > package.json
+    ```
+
+### 2.目录栏
+* 页面左侧的目录栏会自动更换根据页面，如不需要，可以把config.js中 => **sidebar: 'auto', // 侧边栏配置**删除，如果一部分页面不需要，可以自行添加路由，举个栗子：
+    ```
+    sidebar: 
+    [
+      '/',
+      '/guide',
+    ]  
+    ```
 
 
 
