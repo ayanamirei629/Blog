@@ -1,20 +1,19 @@
-cd ..
-# 终止一个错误
+#!/usr/bin/env sh
+
+# 确保脚本抛出遇到的错误
 set -e
-cd docs
-# 生成静态资源
-vuepress build
-# 进入生成的构建文件夹
-cd vuepress
+
+# 生成静态文件
+npm run docs:build
+
+# 进入生成的文件夹
+cd docs/.vuepress/dist
+
 git init
 git add -A
 git commit -m 'deploy'
+
+# 如果发布到 https://<USERNAME>.github.io  填写你刚刚创建的仓库地址
 git push -f https://github.com/ayanamirei629/ayanamirei629.github.io.git master
-
-# 如果你想要部署到 https://USERNAME.github.io
-git push -f git@github.com:ayanamirei629/dairy.github.io.git master
-
-# 如果发布到 https://USERNAME.github.io/<REPO>  REPO=github上的项目
-git push -f git@github.com:ayanamirei629/Blog.git master:gh-pages
 
 cd -
